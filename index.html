@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Habit Tracker - Track and build your daily habits">
+    <meta name="keywords" content="habit tracker, productivity, personal development">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:;">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Habita - Login</title>
+    <!-- BTSR -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Normal CSS -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-calendar-check fa-3x text-primary mb-3"></i>
+                            <h2>Habit Tracker</h2>
+                            <p class="text-muted">Build better habits, one day at a time</p>
+                        </div>
+                        <ul class="nav nav-tabs mb-4" id="authTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" type="button" role="tab" aria-controls="signup" aria-selected="false">Sign Up</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="authTabsContent">
+                            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                                <form id="loginForm">
+                                    <div class="mb-3">
+                                        <label for="loginEmail" class="form-label">Email address</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                            <input type="email" class="form-control" id="loginEmail" required aria-required="true">
+                                        </div>
+                                        <div class="invalid-feedback">Please enter a valid email address</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="loginPassword" class="form-label">Password</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                            <input type="password" class="form-control" id="loginPassword" required aria-required="true">
+                                        </div>
+                                        <div class="invalid-feedback">Please enter your password</div>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary" aria-label="Login to your account">
+                                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+                                <form id="signupForm">
+                                    <div class="mb-3">
+                                        <label for="signupName" class="form-label">Full Name</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            <input type="text" class="form-control" id="signupName" required aria-required="true">
+                                        </div>
+                                        <div class="invalid-feedback">Please enter your full name</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="signupEmail" class="form-label">Email address</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                            <input type="email" class="form-control" id="signupEmail" required aria-required="true">
+                                        </div>
+                                        <div class="invalid-feedback">Please enter a valid email address</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="signupPassword" class="form-label">Password</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                            <input type="password" class="form-control" id="signupPassword" required aria-required="true">
+                                        </div>
+                                        <div class="invalid-feedback">Please enter a password</div>
+                                        <small id="passwordStrength" class="form-text text-danger"></small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                            <input type="password" class="form-control" id="confirmPassword" required aria-required="true">
+                                        </div>
+                                        <div class="invalid-feedback">Please confirm your password</div>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary" aria-label="Create a new account">
+                                            <i class="fas fa-user-plus me-2"></i>Sign Up
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toastContainer" style="position: fixed; top: 20px; right: 20px; z-index: 1000;"></div>
+
+    <!-- JS Bundle  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JS -->
+    <script src="js/data.js"></script>
+    <script src="js/utilities.js"></script>
+    <script src="js/auth.js"></script>
+
+    <!-- FTR -->
+    <footer class="bg-light mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Habit Tracker</h5>
+                    <p class="text-muted">Your personal companion for building better habits and achieving your goals.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-muted me-3" aria-label="Follow us on Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-muted me-3" aria-label="Follow us on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-muted me-3" aria-label="Follow us on Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-muted" aria-label="Follow us on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="home.html" class="text-muted">Home</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="progress.html" class="text-muted">Progress</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="calendar.html" class="text-muted">Calendar</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="recommendations.html" class="text-muted">Recommendations</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="about.html" class="text-muted">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Contact Us</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-2">
+                            <i class="fas fa-envelope me-2"></i>support@habittracker.com
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-phone me-2"></i>+1 (555) 123-4567
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>123 Habit Street, Productivity City
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-muted mb-0">&copy; 2024 Habit Tracker. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-muted me-3">Privacy Policy</a>
+                    <a href="#" class="text-muted">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

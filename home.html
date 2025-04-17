@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Habita - Track and build your daily habits">
+    <meta name="keywords" content="habita, productivity, personal development">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: 'unsafe-inline'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:;">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Home - Habita</title>
+    <!-- BTSR -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- NavBar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#" aria-label="Habita Home"><i class="fas fa-tasks me-2" aria-hidden="true"></i>Habita</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="progress.html">Progress</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="calendar.html">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="recommendations.html">Recommendations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button id="logoutBtn" class="btn btn-outline-light" aria-label="Logout from your account">
+                        <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main -->
+    <div class="container py-4">
+        <div class="row">
+            <!-- Habits CLMN -->
+            <div class="col-lg-8">
+                <!-- Welcome Sect -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="welcome-icon bg-soft-primary rounded p-3 me-3">
+                                <i class="fas fa-user-circle text-primary fa-2x" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h4 class="mb-1">Welcome back, <span id="userName">User</span>!</h4>
+                                <p class="text-muted mb-0">Here's your habit tracking summary for today</p>
+                            </div>
+                        </div>
+                        <div class="progress mb-3" style="height: 8px;" role="progressbar" aria-label="Daily habit completion progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            <div id="dailyProgress" class="progress-bar bg-success" style="width: 0%;"></div>
+                        </div>
+                        <div class="d-flex justify-content-between small text-muted">
+                            <span>Daily Progress</span>
+                            <span id="progressText">0/0 Completed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Today.s Habits Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center bg-white">
+                        <h5 class="mb-0"><i class="fas fa-list-check text-primary me-2" aria-hidden="true"></i>Today's Habits</h5>
+                        <button id="addHabitBtn" class="btn btn-primary btn-sm" aria-label="Add a new habit">
+                            <i class="fas fa-plus me-1" aria-hidden="true"></i> Add New Habit
+                        </button>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul id="habitList" class="list-group list-group-flush" role="list">
+                            <!-- Habits will be added here - I HOPE-->
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-white text-center">
+                        <a href="calendar.html" id="viewCalendarBtn" class="btn btn-outline-primary" aria-label="View your calendar">
+                            <i class="fas fa-calendar-alt me-2" aria-hidden="true"></i>View Calendar
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Streaks Card -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0"><i class="fas fa-fire text-danger me-2" aria-hidden="true"></i>Your Streaks</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row row-cols-1 row-cols-md-3 g-4" id="streakCards" role="list">
+                            <!-- Streak will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <!-- Stats -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0"><i class="fas fa-chart-bar text-info me-2" aria-hidden="true"></i>Your Stats</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="text-center px-3">
+                                <h3 id="totalHabits" class="mb-1">0</h3>
+                                <p class="text-muted small mb-0">Total Habits</p>
+                            </div>
+                            <div class="text-center px-3 border-start border-end">
+                                <h3 id="weeklyCompletion" class="mb-1">0%</h3>
+                                <p class="text-muted small mb-0">Weekly Rate</p>
+                            </div>
+                            <div class="text-center px-3">
+                                <h3 id="longestStreak" class="mb-1">0</h3>
+                                <p class="text-muted small mb-0">Best Streak</p>
+                            </div>
+                        </div>
+                        <div class="text-center pt-2 border-top">
+                            <a href="progress.html" class="btn btn-sm btn-outline-primary" aria-label="View detailed statistics">View Detailed Stats</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reminders -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0"><i class="fas fa-bell text-warning me-2" aria-hidden="true"></i>Reminders</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush" id="remindersList" role="list">
+                            <!-- Same as above -->
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-white text-center">
+                        <button class="btn btn-sm btn-outline-secondary" id="manageReminders" aria-label="Manage your reminders">
+                            <i class="fas fa-cog me-1" aria-hidden="true"></i> Manage Reminders
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Add -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0"><i class="fas fa-bolt text-warning me-2" aria-hidden="true"></i>Quick Add</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted small mb-3">Add from our most popular habits:</p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary btn-sm quick-add" data-habit="Drink Water" aria-label="Add Drink Water habit">
+                                <i class="fas fa-tint me-2" aria-hidden="true"></i>Drink Water
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm quick-add" data-habit="Read 10 Pages" aria-label="Add Read 10 Pages habit">
+                                <i class="fas fa-book me-2" aria-hidden="true"></i>Read 10 Pages
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm quick-add" data-habit="10 Minute Walk" aria-label="Add 10 Minute Walk habit">
+                                <i class="fas fa-walking me-2" aria-hidden="true"></i>10 Minute Walk
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm quick-add" data-habit="Meditate" aria-label="Add Meditate habit">
+                                <i class="fas fa-brain me-2" aria-hidden="true"></i>Meditate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Tips-->
+                <div class="card shadow-sm mt-4">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0"><i class="fas fa-lightbulb text-warning me-2" aria-hidden="true"></i>Daily Tips</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="tip-content text-center">
+                            <div class="tip-icon mb-3">
+                                <i class="fas fa-star text-warning fa-2x"></i>
+                            </div>
+                            <h6 class="tip-title mb-2" id="dailyTipTitle">Habit Formation Tip</h6>
+                            <p class="text-muted small mb-0" id="dailyTipText">Start small, be consistent, and celebrate your progress. Small steps lead to big changes!</p>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-sm btn-outline-warning" id="newTipBtn" aria-label="Get new tip">
+                                <i class="fas fa-sync-alt me-1" aria-hidden="true"></i> New Tip
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FTR -->
+    <footer class="bg-light mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Habita</h5>
+                    <p class="text-muted">Your personal companion for building better habits and achieving your goals.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-muted me-3" aria-label="Follow us on Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-muted me-3" aria-label="Follow us on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-muted me-3" aria-label="Follow us on Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-muted" aria-label="Follow us on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="home.html" class="text-muted">Home</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="progress.html" class="text-muted">Progress</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="calendar.html" class="text-muted">Calendar</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="recommendations.html" class="text-muted">Recommendations</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="about.html" class="text-muted">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Contact Us</h5>
+                    <ul class="list-unstyled text-muted">
+                        <li class="mb-2">
+                            <i class="fas fa-envelope me-2"></i>support@habita.com
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-phone me-2"></i>+1 (555) 123-4567
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-map-marker-alt me-2"></i>123 Habit Street, Productivity City
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-muted mb-0">&copy; 2024 Habita. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-muted me-3">Privacy Policy</a>
+                    <a href="#" class="text-muted">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Habit MDL -->
+    <div class="modal fade" id="addHabitModal" tabindex="-1" aria-labelledby="addHabitModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addHabitModalLabel">Add New Habit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newHabitForm">
+                        <div class="mb-3">
+                            <label for="habitName" class="form-label">Habit Name</label>
+                            <input type="text" class="form-control" id="habitName" placeholder="e.g., Morning Run" required aria-required="true">
+                        </div>
+                        <div class="mb-3">
+                            <label for="habitTime" class="form-label">Time of Day</label>
+                            <select class="form-select" id="habitTime" aria-label="Select time of day for the habit">
+                                <option value="morning">Morning</option>
+                                <option value="afternoon">Afternoon</option>
+                                <option value="evening">Evening</option>
+                                <option value="anytime">Anytime</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="habitFrequency" class="form-label">Frequency</label>
+                            <select class="form-select" id="habitFrequency" aria-label="Select frequency of the habit">
+                                <option value="daily">Daily</option>
+                                <option value="weekdays">Weekdays</option>
+                                <option value="weekends">Weekends</option>
+                                <option value="weekly">Weekly</option>
+                            </select>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="habitReminder">
+                            <label class="form-check-label" for="habitReminder">
+                                Set Reminder
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveHabitBtn">Save Habit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-success text-white">
+                <i class="fas fa-check-circle me-2" aria-hidden="true"></i>
+                <strong class="me-auto">Success</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+                Habit added successfully!
+            </div>
+        </div>
+    </div>
+
+    <!-- BTSR -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Utilities -->
+    <script src="js/data.js"></script>
+    <script src="js/utilities.js"></script>
+    <!-- NORMAL JS -->
+    <script src="js/home.js"></script>
+</body>
+</html> 

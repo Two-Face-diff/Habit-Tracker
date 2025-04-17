@@ -1,0 +1,7 @@
+Copyright (c) 2025 [Marwan Rafe Mohammed]
+
+All rights reserved.
+
+This project is submitted as part of a course requirement and is intended solely for educational purposes. No part of this codebase, design, or any associated files may be copied, reused, distributed, or modified without explicit written permission from the author.
+
+Unauthorized use is strictly prohibited.
